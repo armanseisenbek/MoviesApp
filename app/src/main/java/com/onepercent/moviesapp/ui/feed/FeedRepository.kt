@@ -22,16 +22,11 @@ constructor(
 
     @OptIn(ExperimentalPagingApi::class)
     fun getPopularMovies(): Flow<PagingData<MovieEntity>> {
-
         val pagingSourceFactory = { movieDatabase.movieDao().getAll() }
 
         return Pager(
             config = PagingConfig(
-                pageSize = 10,
-                maxSize = 100,
-                enablePlaceholders = false,
-                initialLoadSize = 20,
-                prefetchDistance = 20
+                pageSize = 5
             ),
             remoteMediator = MovieRemoteMediator(
                 movieApi = movieApi,
